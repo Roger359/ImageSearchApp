@@ -9,9 +9,11 @@ const accessKey = "uVHBxNuySHs08_W4tAnIw5n3ab7B--yn-ARV6i9gxBE";
 let inputData = "";
 let page = 1;
 
-const searchImages = async () => {
-  inputData = searchInput.value;
+console.log(inputData)
 
+const searchImages = async () => {
+  inputData = searchInput.value || 'dog';
+ 
   const url = `https://api.unsplash.com/search/photos?page=${page}&query=${inputData}&client_id=${accessKey}`;
   const response = await fetch(url);
   const data = await response.json();
@@ -57,3 +59,9 @@ form.addEventListener("submit", (event) => {
 showMoreBtn.addEventListener('click', () => {
   searchImages()
 })
+
+async function init(){
+  searchImages()
+}
+
+init()
